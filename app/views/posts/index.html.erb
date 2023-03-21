@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="text-4xl text-center mt-5 mb-4">Posts</h1>
+
+<div class="flex justify-center">
+  <%= render partial: 'search/form', locals: { results: [] } %>
+</div>
+
+<div id="posts" class="mt-4 mx-10">
+  <%= render partial: 'posts/posts', collection: @posts, as: :post %>
+</div>
+
+<%= link_to "New post", new_post_path %>
