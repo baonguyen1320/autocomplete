@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: ['class', '[data-mode="abc"]'],
   mode: 'jit',
   content: [
     './app/views/**/*.html.erb',

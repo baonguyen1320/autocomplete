@@ -14,7 +14,7 @@ export default class extends Controller {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(()=> {
       this.requestSuggestions(query, url);
-    }, 500)
+    }, 250)
   }
 
   requestSuggestions(query, url) {
@@ -30,12 +30,10 @@ export default class extends Controller {
           'X-CSRF-Token': document.querySelector("meta[name='csrf-token']").content
         },
         body: JSON.stringify({query: query})
-      }).then((response) => {
-        response.text().then((html) => {
-          document.body.insertAdjacentHTML('beforeend', html);
-      });
-    });
-  }}
+      }).then(response => response.text())
+          .then(html => Turbo.renderStreamMessage(html));
+    }
+  }
 
   hideSuggestions() {
     this.suggestionsTarget.classList.add('hidden');
