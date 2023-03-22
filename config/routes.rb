@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "posts#index"
 
-  post 'search', to: 'searchs#index', as: :search
-  post 'search/suggestions', to: 'searchs#suggestion', as: :search_suggestions
+  get 'search', to: 'searchs#index', as: :search
+  get 'search/suggestions', to: 'searchs#suggestion', as: :search_suggestions
 end
