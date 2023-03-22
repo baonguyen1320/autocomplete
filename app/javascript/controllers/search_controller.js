@@ -23,13 +23,12 @@ export default class extends Controller {
     } else {
       this.showSuggestions();
 
-      fetch(url, {
-        method: 'POST',
+      fetch(`${url}?query=${query}`, {
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'text/vnd.turbo-stream.html', // or 'application/json',
           'X-CSRF-Token': document.querySelector("meta[name='csrf-token']").content
         },
-        body: JSON.stringify({query: query})
       }).then(response => response.text())
           .then(html => Turbo.renderStreamMessage(html));
     }
